@@ -1,0 +1,18 @@
+{
+  "portBindings": [
+    {
+      "portRange": "{{ mita.port_range }}",
+      "protocol": "{{ mita.protocol }}"
+    }
+  ],
+  "users": [
+{% for user in vpn.users %}
+    {
+      "name": "{{ user.name }}",
+      "password": "{{ user.password }}"
+    }{% if not loop.last %},{% endif %}
+{% endfor %}
+  ],
+  "loggingLevel": "ERROR",
+  "mtu": 1400
+}

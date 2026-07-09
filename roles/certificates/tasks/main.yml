@@ -1,0 +1,17 @@
+- name: Create domain dir
+  file:
+    path: "{{ certificates.remote_dir }}/{{ certificates.domain }}"
+    state: directory
+    mode: "0755"
+
+- name: Copy certificate
+  copy:
+    src: "{{ certificates.local_dir }}/{{ certificates.domain }}/{{ certificates.cert_file }}"
+    dest: "{{ certificates_paths.cert }}"
+    mode: "0644"
+
+- name: Copy private key
+  copy:
+    src: "{{ certificates.local_dir }}/{{ certificates.domain }}/{{ certificates.key_file }}"
+    dest: "{{ certificates_paths.key }}"
+    mode: "0600"

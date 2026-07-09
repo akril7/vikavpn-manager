@@ -1,0 +1,9 @@
+ping_hosts = []
+speedtest_hosts = []
+reverse_proxy_hosts = []
+
+[[main_hosts]]
+hostname = "{{ certificates.domain }}"
+cert_chain_path = "{{ certificates_paths.cert }}"
+private_key_path = "{{ certificates_paths.key }}"
+allowed_sni = ["apple.com"]

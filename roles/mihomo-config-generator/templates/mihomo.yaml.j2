@@ -1,0 +1,17 @@
+tcp-concurrent: true
+keep-alive-interval: 60
+keep-alive-idle: 120
+disable-keep-alive: false
+
+{% include 'config/proxies.j2' %}
+
+
+{% include 'config/proxy-groups.j2' %}
+
+
+{% include 'config/dns.j2' %}
+
+
+{% include 'config/rules.j2' %}
+
+

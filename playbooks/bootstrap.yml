@@ -1,0 +1,6 @@
+- name: Bootstrap for new empty servers
+  hosts: bootstrap
+  become: yes
+
+  roles:
+    - bootstrap

@@ -1,0 +1,38 @@
+- name: Change root password
+  user:
+    name: root
+    password: "{{ bootstrap_secret.root_password_hash }}"
+
+- name: Create ssh user
+  user:
+    name: "{{ bootstrap.ssh.user }}"
+    password: "{{ bootstrap_secret.ssh_user_password_hash }}"
+    create_home: yes
+    state: present
+
+- name: Add authorized keys
+  authorized_key:
+    user: root
+    key: "{{ item }}"
+    state: present
+  loop: "{{ bootstrap.ssh.authorized_keys }}"
+
+- name: Change ssh config
+  template:
+    src: sshd_config.j2
+    dest: /etc/ssh/sshd_config
+  notify: Restart ssh server
+
+- name: Enable BBR qdisc
+  sysctl:
+    name: net.core.default_qdisc
+    value: fq
+    state: present
+    reload: yes
+
+- name: Enable BBR congestion control
+  sysctl:
+    name: net.ipv4.tcp_congestion_control
+    value: bbr
+    state: present
+    reload: yes

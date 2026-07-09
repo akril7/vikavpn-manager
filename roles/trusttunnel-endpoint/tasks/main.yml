@@ -1,0 +1,28 @@
+- name: Create directory
+  file:
+    path: "{{ trusttunnel.install_dir }}"
+    state: directory
+    mode: "0755"
+
+- name: Copy configuration
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ trusttunnel.install_dir }}/{{ item.dest }}"
+    mode: "0644"
+  loop:
+    - { src: "credentials.toml.j2", dest: "credentials.toml" }
+    - { src: "hosts.toml.j2", dest: "hosts.toml" }
+    - { src: "vpn.toml.j2", dest: "vpn.toml" }
+
+- name: Copy binary
+  copy:
+    src: trusttunnel_endpoint
+    dest: /opt/trusttunnel/trusttunnel_endpoint
+    mode: "0744"
+  notify: Restart trusttunnel
+
+- name: Copy service file
+  template:
+    src: trusttunnel.service.j2
+    dest: /etc/systemd/system/trusttunnel.service
+  notify: Restart trusttunnel

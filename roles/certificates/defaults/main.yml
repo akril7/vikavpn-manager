@@ -1,0 +1,10 @@
+certificates:
+  # domain:  
+  remote_dir: /etc/ssl
+  local_dir: certs
+  cert_file: cert.pem
+  key_file: key.pem
+
+certificates_paths:
+  cert: "{{ certificates.remote_dir }}/{{ certificates.domain }}/{{ certificates.cert_file }}"
+  key: "{{ certificates.remote_dir }}/{{ certificates.domain }}/{{ certificates.key_file }}"

@@ -1,0 +1,16 @@
+- name: Install nginx
+  apt:
+    name: nginx
+    state: present
+
+- name: Copy index.html
+  copy:
+    src: index.html
+    dest: "{{ fakesite.path }}"
+    mode: "0644"
+
+- name: Copy nginx.conf
+  template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/sites-available/default
+  notify: Reload nginx

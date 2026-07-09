@@ -1,0 +1,4 @@
+fileserver:
+  name: File Server
+  prefix: files
+  dir: /opt/fileserver

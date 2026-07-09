@@ -1,0 +1,20 @@
+proxy-groups:
+  - name: PROXY
+    type: fallback
+    proxies:
+    - 443-tcp
+    - proxy-trust
+    - mieru-udp
+    url: 'https://www.gstatic.com/generate_204'
+    interval: 900
+    lazy: false
+
+  - name: proxy-trust
+    type: fallback
+    proxies:
+    - trust-h2
+    - trust-quic
+    url: 'https://www.gstatic.com/generate_204'
+    interval: 0
+    lazy: false
+    hidden: true

@@ -1,0 +1,3 @@
+trusttunnel:
+  install_dir: /opt/trusttunnel
+  metrics_port: 35553

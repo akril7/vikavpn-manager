@@ -1,0 +1,14 @@
+[Unit]
+Description=Sudoku endpoint
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory={{ sudoku.install_dir }}
+ExecStart={{ sudoku.install_dir }}/sudoku -c server.json
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

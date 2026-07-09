@@ -1,0 +1,10 @@
+- name: Reload mita config
+  command:
+    cmd: mita apply config /etc/mita/mita.json
+  listen: Apply mita config
+
+- name: Restart mita service
+  systemd:
+    name: mita
+    state: restarted
+  listen: Apply mita config

@@ -1,0 +1,24 @@
+- name: Create dir
+  file:
+    path: "{{ sudoku.install_dir }}"
+    state: directory
+    mode: "0755"
+
+- name: Copy binary
+  copy:
+    src: sudoku
+    dest: "{{ sudoku.install_dir }}/sudoku"
+    mode: "0744"
+
+- name: Copy config
+  template:
+    src: server.json.j2
+    dest: "{{ sudoku.install_dir }}/server.json"
+    mode: "0744"
+  notify: Restart sudoku
+
+- name: Copy service file
+  template:
+    src: sudoku.service.j2
+    dest: /etc/systemd/system/sudoku.service
+  notify: Restart sudoku

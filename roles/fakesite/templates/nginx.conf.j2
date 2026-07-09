@@ -1,0 +1,10 @@
+server {
+    listen {{ fakesite.port }} ssl;
+    server_name {{ certificates.domain }};
+
+    ssl_certificate {{ certificates_paths.cert }};
+    ssl_certificate_key {{ certificates_paths.key }};
+
+    root /var/www/html;
+    index index.html;
+}

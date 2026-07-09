@@ -1,0 +1,12 @@
+- name: Setup VPN endpoints
+  hosts: vpn_servers
+  become: yes
+
+  roles:
+    - certificates
+    - fileserver
+    - fakesite
+    - trusttunnel-endpoint
+    - mita-endpoint
+    - sudoku-endpoint
+    - mihomo-config-generator

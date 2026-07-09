@@ -1,0 +1,18 @@
+{
+  "mode": "server",
+  "transport": "{{ sudoku.transport }}",
+  "local_port": {{ sudoku.port }},
+  "fallback_address": "127.0.0.1:{{ sudoku.fallback_port }}",
+  "key": "{{ sudoku.public_key }}",
+  "aead": "chacha20-poly1305",
+  "suspicious_action": "fallback",
+  "padding_min": 5,
+  "padding_max": 15,
+  "custom_table": "",
+  "custom_tables": [],
+  "ascii": "prefer_entropy",
+  "enable_pure_downlink": true,
+  "httpmask": {
+    "disable": false
+  }
+}

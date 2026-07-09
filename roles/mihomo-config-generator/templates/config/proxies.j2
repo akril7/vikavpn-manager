@@ -1,0 +1,48 @@
+proxies:
+  - name: 443-tcp
+    type: sudoku
+    server: {{ certificates.domain }}
+    port: {{ sudoku.port }}
+    key: {{ user.sudoku_key }}
+    aead-method: chacha20-poly1305
+    ascii: prefer_entropy
+    padding-min: 5
+    padding-max: 15
+    enable-pure-downlink: true
+    multiplex: off
+    http-mask: false
+    udp: true
+    
+  - name: mieru-udp
+    type: mieru
+    server: {{ certificates.domain }}
+    port-range: "{{ mita.port_range }}"
+    transport: {{ mita.protocol }}
+    multiplexing: MULTIPLEXING_LOW
+    udp: true
+    username: {{ user.name }}
+    password: {{ user.password }}
+
+  - name: trust-h2
+    type: trusttunnel
+    server: {{ certificates.domain }}
+    port: {{ trusttunnel.port }}
+    sni: {{ certificates.domain }}
+    udp: true
+    skip-cert-verify: false
+    quic: false
+    health-check: true
+    username: {{ user.name }}
+    password: {{ user.password }}
+
+  - name: trust-quic
+    type: trusttunnel
+    server: {{ certificates.domain }}
+    port: {{ trusttunnel.port }}
+    sni: {{ certificates.domain }}
+    udp: true
+    skip-cert-verify: false
+    quic: true
+    health-check: true
+    username: {{ user.name }}
+    password: {{ user.password }}

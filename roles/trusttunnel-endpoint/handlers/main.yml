@@ -1,0 +1,6 @@
+- name: Restart trusttunnel
+  systemd:
+    name: trusttunnel
+    enabled: true
+    state: restarted
+    daemon_reload: true

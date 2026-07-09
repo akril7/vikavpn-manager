@@ -1,0 +1,6 @@
+Include /etc/ssh/sshd_config.d/*.conf
+
+Port {{ bootstrap.ssh.port }}
+PermitRootLogin prohibit-password
+PubkeyAuthentication yes
+PasswordAuthentication yes

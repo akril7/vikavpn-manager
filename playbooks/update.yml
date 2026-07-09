@@ -1,0 +1,6 @@
+- name: Update subscriptions
+  hosts: vpn_servers
+  become: yes
+
+  roles:
+    - mihomo-config-generator

@@ -1,0 +1,7 @@
+- name: Copy configs
+  template:
+    src: mihomo.yaml.j2
+    dest: "{{ fileserver.dir }}/{{ user.uuid }}.yaml"
+  loop: "{{ vpn.users }}"
+  loop_control:
+    loop_var: user
