@@ -1,0 +1,11 @@
+# Ansible Vault
+**/secret.yml
+**/*vault*
+
+# Certificates
+files/certs/
+*.pem
+*.key
+
+# Runtime
+*.retry

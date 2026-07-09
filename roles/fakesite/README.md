@@ -1,10 +1,28 @@
-Fakesite use nginx
+# Ansible Role: fakesite
 
------------------------------------------------------------
-Vars
+Deploy a simple Nginx HTTPS site with a static `index.html`.
 
-fakesite:
-*required*
-  port
-*default*
-  path - index.html store path
+The role:
+
+- installs Nginx
+- deploys a static page
+- configures HTTPS virtual host
+- uses certificates from the `certificates` role
+
+## Dependencies
+
+This role requires:
+
+```
+dependencies:
+
+* role: certificates
+```
+
+## Variables
+
+| Variable        | Description                | Default                    |
+| --------------- | -------------------------- | -------------------------- |
+| `fakesite.path` | Path to website index file | `/var/www/html/index.html` |
+| `fakesite.port` | HTTPS listen port          | `443`                      |
+
