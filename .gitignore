@@ -9,3 +9,5 @@ files/certs/
 
 # Runtime
 *.retry
+
+inventories/

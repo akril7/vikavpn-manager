@@ -1,0 +1,52 @@
+# MTProxyL — настройки v1.1.5
+# Создано: 2026-07-17 20:35:14 UTC
+# НЕ РЕДАКТИРУЙТЕ ВРУЧНУЮ — используйте 'mtproxyl' для изменения
+
+# Конфигурация прокси
+PROXY_PORT='{{ mtproxyl.port }}'
+PROXY_METRICS_PORT='{{ mtproxyl.metrics_port }}'
+PROXY_DOMAIN='{{ mtproxyl.fake_tls_domain }}'
+PROXY_CONCURRENCY='8192'
+PROXY_CPUS=''
+PROXY_MEMORY=''
+CUSTOM_IP='{{ server_address }}'
+FAKE_CERT_LEN='{{ fake_cert_len }}'
+PROXY_PROTOCOL='false'
+PROXY_PROTOCOL_TRUSTED_CIDRS=''
+
+# Рекламная метка (от @MTProxyBot)
+AD_TAG=''
+
+# Гео-блокировка
+GEOBLOCK_MODE='blacklist'
+BLOCKLIST_COUNTRIES=''
+
+# Маскировка трафика
+MASKING_ENABLED='true'
+MASKING_HOST=''
+MASKING_PORT='443'
+MASKING_RELAY_MAX_BYTES=''
+UNKNOWN_SNI_ACTION='mask'
+
+# Пользовательские URL инфраструктуры Telegram
+PROXY_SECRET_URL=''
+PROXY_CONFIG_V4_URL=''
+PROXY_CONFIG_V6_URL=''
+
+# Автообновление
+AUTO_UPDATE_ENABLED='true'
+
+# Автоматическая ротация секретов
+SECRET_AUTO_ROTATE_DAYS='0'
+BACKUP_RETENTION_DAYS='30'
+
+# Selfmask
+SELFMASK_ENABLED='false'
+SELFMASK_DOMAIN=''
+SELFMASK_SITE_SOURCE='stub'
+SELFMASK_SITE_DIR='/var/www/mtproxyl-selfmask'
+SELFMASK_NGINX_BACKEND_PORT='8444'
+SELFMASK_CERT_EMAIL=''
+SELFMASK_NGINX_SITE_NAME='mtproxyl-selfmask'
+SELFMASK_AUTO_RENEW='true'
+SELFMASK_TLS_PROTOCOLS='TLSv1.3'

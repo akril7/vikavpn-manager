@@ -1,24 +1,27 @@
 server {
-    listen {{ fileserver.port }} ssl;
-    server_name {{ certificates.domain }};
+    listen {{ fileserver.port }}{% if certificates is defined %} ssl{% endif %};
+    server_name {{ certificates.domain | default('_') }};
 
+    {% if certificates is defined %}
     ssl_certificate {{ certificates_paths.cert }};
     ssl_certificate_key {{ certificates_paths.key }};
-	
+    {% endif %}
+
     location / {
-	default_type text/html;
+        default_type text/html;
         return 200 "<!DOCTYPE html><html><head><title>{{ fileserver.name }}</title></head></html>";
     }
 
     location /{{ fileserver.prefix }}/ {
-	default_type text/plain;
-	alias {{ fileserver.dir }};
-	try_files $uri.yml =404;
+        default_type text/plain;
+        alias {{ fileserver.dir }};
+        try_files $uri.yml =404;
     }
+
     location ~ ^/{{ fileserver.prefix }}/([a-zA-Z0-9_-]+)$ {
         default_type text/plain;
         alias {{ fileserver.dir }}/$1.yaml;
-	
-	log_not_found off;
+
+        log_not_found off;
     }
 }

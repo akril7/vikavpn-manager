@@ -2,19 +2,25 @@ proxy-groups:
   - name: PROXY
     type: fallback
     proxies:
-    - 443-tcp
+    {% if trusttunnel is definded %}
     - proxy-trust
+    {% endif %}
+    {% if sudoku is defined %}
+    - 443-tcp
+    {% endif %}
+    {% if mita is defined %}
     - mieru-udp
-    url: 'https://www.gstatic.com/generate_204'
+    {% endif %}
     interval: 900
     lazy: false
-
+  
+  {% if trusttunnel is defined %}
   - name: proxy-trust
     type: fallback
     proxies:
     - trust-h2
     - trust-quic
-    url: 'https://www.gstatic.com/generate_204'
     interval: 0
     lazy: false
     hidden: true
+  {% endif %}

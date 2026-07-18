@@ -1,9 +1,5 @@
 ansible_port: 2222
 
-certificates:
-  local_dir: "{{ playbook_dir }}/../files/certs"
-  domain: "vpn.example.com"
-
 fakesite:
   port: 5000
 
@@ -11,10 +7,6 @@ fileserver:
   name: VPN-FileServer
   prefix: sub
   port: 7071
-
-trusttunnel:
-  port: 8443
-  metrics_port: 8400
 
 mita:
   port_range: "10000-10127"
@@ -25,3 +17,8 @@ sudoku:
   fallback_port: 5000
   public_key: CHANGE_ME
   transport: tcp
+
+mtproxyl:
+  port: 7443
+  metrics_port: 7400
+  fake_tls_domain: aeza.ru

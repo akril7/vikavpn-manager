@@ -4,6 +4,7 @@ vpn:
       password: CHANGE_ME
       uuid: 00000000-0000-0000-0000-000000000000
       sudoku_key: CHANGE_ME
+      rule_tiktok: true
 
     - name: user2
       password: CHANGE_ME

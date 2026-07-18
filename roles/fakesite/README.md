@@ -6,16 +6,13 @@ The role:
 
 - installs Nginx
 - deploys a static page
-- configures HTTPS virtual host
-- uses certificates from the `certificates` role
+- can use certificates from the `certificates` role for https
 
 ## Dependencies
 
-This role requires:
+Optional:
 
 ```
-dependencies:
-
 * role: certificates
 ```
 
@@ -24,5 +21,5 @@ dependencies:
 | Variable        | Description                | Default                    |
 | --------------- | -------------------------- | -------------------------- |
 | `fakesite.path` | Path to website index file | `/var/www/html/index.html` |
-| `fakesite.port` | HTTPS listen port          | `443`                      |
+| `fakesite.port` | listen port                | required                   |
 

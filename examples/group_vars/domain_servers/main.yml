@@ -1,0 +1,7 @@
+certificates:
+ local_dir: "{{ playbook_dir }}/../files/certs"
+ domain: "mydomian.net"
+
+trusttunnel:
+ port: 8443
+ metrics_port: 8400

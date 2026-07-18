@@ -1,5 +1,8 @@
 rules:
+{% if sudoku is defined and (user.rule_tiktok | default(false))  %}
   - GEOSITE,tiktok,443-tcp
+{% endif %}
+
   - DOMAIN-KEYWORD,sex-studentki,PROXY
   - GEOSITE,pornhub,PROXY
   - GEOSITE,facebook,PROXY

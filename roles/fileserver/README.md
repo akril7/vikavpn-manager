@@ -5,18 +5,14 @@ Deploy a simple Nginx-based file server with HTTPS support.
 The role:
 
 - installs and enables Nginx
-- configures HTTPS virtual host
 - creates storage directory
 - serves files through a configurable URL prefix
-- uses certificates from the `certificates` role
+- can use certificates from the `certificates` role for https
 
 ## Dependencies
 
-This role requires:
-
+Optional:
 ```
-dependencies:
-
 * role: certificates
 ```
 
@@ -28,7 +24,7 @@ dependencies:
 | `fileserver.name` | Server page title | `File Server` |
 | `fileserver.prefix` | URL prefix for files | `files` |
 | `fileserver.dir` | Directory with files | `/opt/fileserver` |
-| `fileserver.port` | HTTPS listen port | `443` |
+| `fileserver.port` | listen port | required |
 
 
 ## Result

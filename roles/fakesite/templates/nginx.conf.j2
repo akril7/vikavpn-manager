@@ -1,9 +1,14 @@
 server {
-    listen {{ fakesite.port }} ssl;
+    listen {{ fakesite.port }}{% if certificates is defined %} ssl{% endif %};
+
+    {% if certificates is defined %}
     server_name {{ certificates.domain }};
 
     ssl_certificate {{ certificates_paths.cert }};
     ssl_certificate_key {{ certificates_paths.key }};
+    {% else %}
+    server_name _;
+    {% endif %}
 
     root /var/www/html;
     index index.html;

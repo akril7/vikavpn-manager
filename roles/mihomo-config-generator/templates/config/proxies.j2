@@ -1,7 +1,8 @@
 proxies:
+  {% if sudoku is defined %}
   - name: 443-tcp
     type: sudoku
-    server: {{ certificates.domain }}
+    server: {{ server_address }}
     port: {{ sudoku.port }}
     key: {{ user.sudoku_key }}
     aead-method: chacha20-poly1305
@@ -12,20 +13,24 @@ proxies:
     multiplex: off
     http-mask: false
     udp: true
+  {% endif %}
     
+  {% if mita is defined %}
   - name: mieru-udp
     type: mieru
-    server: {{ certificates.domain }}
+    server: {{ server_address }}
     port-range: "{{ mita.port_range }}"
     transport: {{ mita.protocol }}
     multiplexing: MULTIPLEXING_LOW
     udp: true
     username: {{ user.name }}
     password: {{ user.password }}
+  {% endif %}
 
+  {% if trusttunnel is defined %}
   - name: trust-h2
     type: trusttunnel
-    server: {{ certificates.domain }}
+    server: {{ server_address }}
     port: {{ trusttunnel.port }}
     sni: {{ certificates.domain }}
     udp: true
@@ -37,7 +42,7 @@ proxies:
 
   - name: trust-quic
     type: trusttunnel
-    server: {{ certificates.domain }}
+    server: {{ server_address }}
     port: {{ trusttunnel.port }}
     sni: {{ certificates.domain }}
     udp: true
@@ -46,3 +51,4 @@ proxies:
     health-check: true
     username: {{ user.name }}
     password: {{ user.password }}
+  {% endif %}
